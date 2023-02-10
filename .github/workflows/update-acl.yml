@@ -24,6 +24,7 @@ jobs:
       discord_username: ${{ steps.main.outputs.discord_username }}
     steps:
       - id: main
+        shell: bash
         run: |
           body="${{ github.event.issue.body }}"
           body=${body//$'\n'/}
