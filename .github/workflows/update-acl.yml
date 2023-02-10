@@ -1,3 +1,35 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@deantheking 
+org101org101
+/
+pubrepo
+Public
+Fork your own copy of org101org101/pubrepo
+Code
+Issues
+1
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+pubrepo/.github/workflows/update-acl.yml
+@deantheking
+deantheking Update update-acl.yml
+Latest commit bcea40b 14 minutes ago
+ History
+ 1 contributor
+99 lines (90 sloc)  2.79 KB
+
 name: update-acl
 
 on:
@@ -13,7 +45,6 @@ jobs:
       - name: check privilege
         run: |
           echo "${{github.event.sender.login}}"
-
   parse_info:
     needs: [check_permission]
     runs-on: ubuntu-latest
@@ -39,7 +70,6 @@ jobs:
           discord_username="${BASH_REMATCH[2]}"
           echo "github_username=github_username" >> $GITHUB_OUTPUT
           echo "discord_username=$discord_username" >> $GITHUB_OUTPUT
-
           title="${{ github.event.issue.title }}"
           regex="Request (.*) access for (.*) to the (.*)"
           if [[ ! $title =~ $regex ]]
@@ -49,7 +79,6 @@ jobs:
           else
             privilege="${BASH_REMATCH[1]}"
             repo="${BASH_REMATCH[3]}"
-
             file_path=
             case `echo $repo | sed -e 's/^[[:space:]]*//'` in
               "Solana Labs Monorepo")
@@ -63,7 +92,6 @@ jobs:
               ;;
             esac
             echo "file_path=$file_path" >> $GITHUB_OUTPUT
-
             level=
             case $privilege in
               "Triage")
@@ -78,12 +106,10 @@ jobs:
             esac
             echo "level=$level" >> $GITHUB_OUTPUT
           fi
-
           echo "github_username=$github_username"
           echo "discord_username=$discord_username"
           echo "file_path=$file_path"
           echo "level=$level"
-
   update_acl:
     needs: [parse_info]
     runs-on: ubuntu-latest
@@ -93,7 +119,7 @@ jobs:
         run: |
           git remote
           echo "level1"
-
       - if: needs.parse_info.outputs.level == 2
         run:
           echo "level2"
+pubrepo/update-acl.yml at main · org101org101/pubrepo
