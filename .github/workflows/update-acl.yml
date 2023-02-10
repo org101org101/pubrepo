@@ -92,8 +92,7 @@ jobs:
 
       - if: needs.parse_info.outputs.level == 1
         run: |
-          echo "| ${{ needs.parse_info.outputs.github_username }} | ${{ needs.parse_info.outputs.discord_username }} | ${{ needs.parse_info.outputs.level }} }}"
-            >> ${{ needs.parse_info.outputs.file_path }}
+          echo "| ${{ needs.parse_info.outputs.github_username }} | ${{ needs.parse_info.outputs.discord_username }} | ${{ needs.parse_info.outputs.level }} }}" >> ${{ needs.parse_info.outputs.file_path }}
 
       - if: needs.parse_info.outputs.level == 2
         run: |
