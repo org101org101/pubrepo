@@ -1,0 +1,26 @@
+name: change-label
+
+on:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  link_to_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ["approved"]
+            })
+            github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              name: "${{ github.event.label.name }}"
+            })
