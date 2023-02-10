@@ -89,22 +89,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PUSH_TOKEN }}
 
       - if: needs.parse_info.outputs.level == 1
         run: |
-          echo "${{ toJSON(github) }}"
-          git remote -vv
           echo "| ${{ needs.parse_info.outputs.github_username }} | ${{ needs.parse_info.outputs.discord_username }} | ${{ needs.parse_info.outputs.level }} }}"
             >> ${{ needs.parse_info.outputs.file_path }}
-          git add .
-          git commit -m "update acl"
-          git push
 
       - if: needs.parse_info.outputs.level == 2
-        run:
+        run: |
           sed -i -e 's/|\(.*${{ needs.parse_info.outputs.github_username }}.*\)|\(.*${{ needs.parse_info.outputs.discord_username }}.*\)|\(.*\)|/|\1|\2| ${{ needs.parse_info.outputs.level }} |/g' ${{ needs.parse_info.outputs.file_path }}
-          git add .
+
+      - name: push
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add ${{ needs.parse_info.outputs.file_path }}
           git commit -m "update acl"
           git push
