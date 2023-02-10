@@ -89,8 +89,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PUSH_TOKEN }}
+
       - if: needs.parse_info.outputs.level == 1
         run: |
+          echo "${{ toJSON(github) }}"
+          git remote -vv
           echo "| ${{ needs.parse_info.outputs.github_username }} | ${{ needs.parse_info.outputs.discord_username }} | ${{ needs.parse_info.outputs.level }} }}"
             >> ${{ needs.parse_info.outputs.file_path }}
           git add .
