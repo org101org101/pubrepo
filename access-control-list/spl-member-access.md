@@ -29,4 +29,4 @@ This is a page for keeping track of members with different levels of access to t
 | jordansexton   | jordaaash#3040                | 1            |
 | LucasSte       | LucasSte#2331                 | 1            |
 | nvjle          | jasoneck#7001                 | 1            |
-| iamgroot | iamgroot#9999 | 1 |
+| iamgroot | iamgroot#9999 | 2 |
