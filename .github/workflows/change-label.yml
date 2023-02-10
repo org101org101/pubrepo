@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.CHANGE_LABEL_PAT }}
           script: |
             github.rest.issues.addLabels({
               owner: context.repo.owner,
