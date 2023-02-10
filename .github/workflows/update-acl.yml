@@ -79,6 +79,11 @@ jobs:
             echo "level=$level" >> $GITHUB_OUTPUT
           fi
 
+          echo "github_username=$github_username"
+          echo "discord_username=$discord_username"
+          echo "file_path=$file_path"
+          echo "level=$level"
+
   update_acl:
     needs: [parse_info]
     runs-on: ubuntu-latest
