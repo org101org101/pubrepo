@@ -37,7 +37,7 @@ jobs:
           fi
           github_username="${BASH_REMATCH[1]}"
           discord_username="${BASH_REMATCH[2]}"
-          echo "github_username=github_username" >> $GITHUB_OUTPUT
+          echo "github_username=$github_username" >> $GITHUB_OUTPUT
           echo "discord_username=$discord_username" >> $GITHUB_OUTPUT
 
           title="${{ github.event.issue.title }}"
@@ -92,7 +92,8 @@ jobs:
 
       - if: needs.parse_info.outputs.level == 1
         run: |
-          echo "| ${{ needs.parse_info.outputs.github_username }} | ${{ needs.parse_info.outputs.discord_username }} | ${{ needs.parse_info.outputs.level }} }}" >> ${{ needs.parse_info.outputs.file_path }}
+          echo "| ${{ needs.parse_info.outputs.github_username }} | ${{ needs.parse_info.outputs.discord_username }} | ${{ needs.parse_info.outputs.level }} |" >> ${{ needs.parse_info.outputs.file_path }}
+
 
       - if: needs.parse_info.outputs.level == 2
         run: |
