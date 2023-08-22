@@ -1,0 +1,11 @@
+name: ci
+
+on:
+  merge_group:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+            echo "${{ toJSON(github) }}"
