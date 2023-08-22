@@ -2,6 +2,7 @@ name: merge_group
 
 on:
   merge_group:
+    types: [checks_requested]
 
 jobs:
   main:
