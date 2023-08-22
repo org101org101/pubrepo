@@ -10,5 +10,20 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: |
-            echo "${{ toJSON(github) }}"
+          #pr_num="${{ github.event.issue.number }}"
+          #gh pr checkout "$pr_num"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          #git show -s --format=%B > "git_message"
+          #echo $'\nGENERATED_BY_GITHUB_BOT: https://github.com/solana-labs/move/pull/'"$pr_num" >> "git_message"
+          #git commit --amend -F "git_message"
+          #git push -f
+
+          touch githubaction
+          git add .
+          git commit -m "test"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
