@@ -1,12 +1,12 @@
 name: merge_group
 
 on:
+  pull_request:
   merge_group:
-    branches:
-      - main
-
+  
 jobs:
   main:
+    if: ${{ github.event_name == 'merge_group' }}
     runs-on: ubuntu-latest
     steps:
       - run: |
