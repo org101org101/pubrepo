@@ -3,6 +3,9 @@ name: merge_group
 on:
   pull_request:
   merge_group:
+    types: [ checks_requested ]
+    branches:
+      - main
   
 jobs:
   main:
